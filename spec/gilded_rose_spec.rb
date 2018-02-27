@@ -53,15 +53,37 @@ describe GildedRose do
 
 		context "when dealing with Sulfuras" do
 			it "does not decrease in sell_in value" do
-				sulfuras = [Item.new("Sulfuras, Hand of Ragnaros", 1, 50)]
+				sulfuras = [Item.new("Sulfuras, Hand of Ragnaros", 1, 80)]
 				GildedRose.new(sulfuras).update_quality()
 				expect(sulfuras[0].sell_in).to eq 1
 			end
 
 			it "does not decrease in quality" do
-				sulfuras = [Item.new("Sulfuras, Hand of Ragnaros", 1, 50)]
+				sulfuras = [Item.new("Sulfuras, Hand of Ragnaros", 1, 80)]
 				GildedRose.new(sulfuras).update_quality()
-				expect(sulfuras[0].quality).to eq 50
+				expect(sulfuras[0].quality).to eq 80
+			end
+		end
+
+		context "when dealing with backstage passes" do
+			it "increases in quality by 1 when 11 days or more of sell_in value left" do
+				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 11, 10)]
+				GildedRose.new(backstage_pass).update_quality()
+				expect(backstage_pass[0].quality).to eq 11
+			end
+
+			it "increases in quality by 2 when between 10 and 6 days of sell_in value left" do
+				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 10), Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 10)]
+				GildedRose.new(backstage_pass).update_quality()
+				expect(backstage_pass[0].quality).to eq 12
+				expect(backstage_pass[1].quality).to eq 12
+			end
+
+			it "increases in quality by 3 when between 5 days and 1 day of sell_in value left" do
+				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 10), Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 10)]
+				GildedRose.new(backstage_pass).update_quality()
+				expect(backstage_pass[0].quality).to eq 13
+				expect(backstage_pass[1].quality).to eq 13
 			end
 		end
 	end

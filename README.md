@@ -26,6 +26,15 @@ The idea is then to use these tests as a perimeter to guide my refactoring in th
 
 Refactor the legacy codebase.
 
+I have refactored the codebase so that I now have four private methods dealing with respectively:
+
+- brie
+- backstage passes
+- standard stock  
+- quality limits
+
+Much of the logic has now been taken out of the update quality method and passed into these private methods instead.
+
 ***3***
 
 Develop the new conjured items feature described in the requirements.

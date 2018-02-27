@@ -1,0 +1,15 @@
+Style/StringLiterals:
+ Enabled: false
+
+Style/StringLiteralsInInterpolation:
+ Enabled: false
+
+Style/IndentationConsistency:
+ EnforcedStyle: normal
+
+Documentation:
+ Enabled: false
+
+Style/BlockLength:
+ Exclude:
+   - 'spec/**/*.rb'

@@ -33,29 +33,29 @@ automated tests to cover off the pre-existing functionality, testing for the
 following four broad areas:
 
 - when dealing with **Standard stock**
- - normal quality reduction
- - normal sell_in reduction
- - quality reduction post sell_in expiry
- - quality cannot be negative
+	- normal quality reduction
+	- normal sell_in reduction
+	- quality reduction post sell_in expiry
+	- quality cannot be negative
 
 - when dealing with **Aged Brie**
- - increases in quality as sell_in value decreases
- - cannot increase in quality above 50
+	- increases in quality as sell_in value decreases
+	- cannot increase in quality above 50
 
 - when dealing with **Sulfuras**
- - does not decrease in sell_in value
- - does not decrease in quality
+	- does not decrease in sell_in value
+	- does not decrease in quality
 
 - when dealing with **Backstage passes**
- - increases in quality by 1 when 11+ days of sell_in value left
- - increases in quality by 2 when 10 days of sell_in value left
- - increases in quality by 2 when 6 days of sell_in value left
- - increases in quality by 3 when 5 days of sell_in value left
- - increases in quality by 3 when 1 day of sell_in value left
- - cannot increase in quality above 50 when incrementing in units of 1
- - cannot increase in quality above 50 when incrementing in units of 2
- - cannot increase in quality above 50 when incrementing in units of 3
- - decreases in quality to 0 when sell_in value reaches 0
+	- increases in quality by 1 when 11+ days of sell_in value left
+	- increases in quality by 2 when 10 days of sell_in value left
+	- increases in quality by 2 when 6 days of sell_in value left
+	- increases in quality by 3 when 5 days of sell_in value left
+	- increases in quality by 3 when 1 day of sell_in value left
+	- cannot increase in quality above 50 when incrementing in units of 1
+	- cannot increase in quality above 50 when incrementing in units of 2
+	- cannot increase in quality above 50 when incrementing in units of 3
+	- decreases in quality to 0 when sell_in value reaches 0
 
 I then used these tests as a perimeter to guide my refactoring and subsequently  
 the development of new functionality.

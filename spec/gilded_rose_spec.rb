@@ -24,7 +24,7 @@ describe GildedRose do
 				expect(std_items[0].sell_in).to eq 9
 			end
 
-			it "once sell_in date passed, reduces the quality of an item by a factor of 2" do
+			it "once sell_in date passed, it decreases the quality of an item by a reduction of 2" do
 				std_items = [Item.new("foo", 0, 10)]
 				GildedRose.new(std_items).update_quality()
 				expect(std_items[0].quality).to eq 8
@@ -72,31 +72,79 @@ describe GildedRose do
 				expect(backstage_pass[0].quality).to eq 11
 			end
 
-			it "increases in quality by 2 when between 10 and 6 days of sell_in value left" do
-				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 10), Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 10)]
+			it "increases in quality by 2 when 10 days of sell_in value left" do
+				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 10)]
 				GildedRose.new(backstage_pass).update_quality()
 				expect(backstage_pass[0].quality).to eq 12
-				expect(backstage_pass[1].quality).to eq 12
 			end
 
-			it "increases in quality by 3 when between 5 days and 1 day of sell_in value left" do
-				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 10), Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 10)]
+			it "increases in quality by 2 when 6 days of sell_in value left" do
+				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 10)]
+				GildedRose.new(backstage_pass).update_quality()
+				expect(backstage_pass[0].quality).to eq 12
+			end
+
+			it "increases in quality by 3 when 5 days of sell_in value left" do
+				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 10)]
 				GildedRose.new(backstage_pass).update_quality()
 				expect(backstage_pass[0].quality).to eq 13
-				expect(backstage_pass[1].quality).to eq 13
 			end
 
-			it "cannot increase in quality above 50 regardless of conditions" do
-				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 49), Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 49)]
+			it "increases in quality by 3 when 1 day of sell_in value left" do
+				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 10)]
+				GildedRose.new(backstage_pass).update_quality()
+				expect(backstage_pass[0].quality).to eq 13
+			end
+
+			it "cannot increase in quality above 50 when incrementing by units of 1" do
+				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 11, 50)]
 				GildedRose.new(backstage_pass).update_quality()
 				expect(backstage_pass[0].quality).to eq 50
-				expect(backstage_pass[1].quality).to eq 50
+			end
+
+			it "cannot increase in quality above 50 when incrementing by units of 2" do
+				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 6, 49)]
+				GildedRose.new(backstage_pass).update_quality()
+				expect(backstage_pass[0].quality).to eq 50
+			end
+
+
+			it "cannot increase in quality above 50 when incrementing by units of 3" do
+				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 49)]
+				GildedRose.new(backstage_pass).update_quality()
+				expect(backstage_pass[0].quality).to eq 50
 			end
 
 			it "decreases in quality to 0 when sell_in value reaches 0" do
 				backstage_pass = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 50)]
 				GildedRose.new(backstage_pass).update_quality()
 				expect(backstage_pass[0].quality).to eq 0
+			end
+		end
+
+		context "when dealing with conjured items" do
+			it "reduces the quality of the item by 2" do
+				std_items = [Item.new("Conjured item", 10, 10)]
+				GildedRose.new(std_items).update_quality()
+				expect(std_items[0].quality).to eq 8
+			end
+
+			it "reduces the sell_in value of the item by 1" do
+				std_items = [Item.new("Conjured item", 10, 10)]
+				GildedRose.new(std_items).update_quality()
+				expect(std_items[0].sell_in).to eq 9
+			end
+
+			it "once sell_in date passed, it decreases the quality of an item by a reduction of 4" do
+				std_items = [Item.new("Conjured item", 0, 10)]
+				GildedRose.new(std_items).update_quality()
+				expect(std_items[0].quality).to eq 6
+			end
+
+			it "cannot allow an item's quality to be negative" do
+				std_items = [Item.new("Conjured item", 0, 0)]
+				GildedRose.new(std_items).update_quality()
+				expect(std_items[0].quality).to eq 0
 			end
 		end
 	end

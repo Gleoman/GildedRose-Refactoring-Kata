@@ -19,6 +19,7 @@ At this stage, I have tested four broad areas as follows:
 - when dealing with Aged Brie
 - when dealing with Sulfuras  
 - when dealing with backstage passes
+- when dealing with conjured items
 
 The idea is then to use these tests as a perimeter to guide my refactoring in the second stage.
 

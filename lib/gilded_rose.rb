@@ -8,12 +8,15 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-			if item.name == "Aged Brie"
+			case item.name
+			when "Aged Brie"
 				brie(item)
-			elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
+			when "Backstage passes to a TAFKAL80ETC concert"
 				pass(item)
-			elsif item.name == "Sulfuras, Hand of Ragnaros"
+			when "Sulfuras, Hand of Ragnaros"
 				item
+			when "Conjured item"
+				conjured(item)
 			else
 				standard_stock(item)
 			end
@@ -23,19 +26,20 @@ class GildedRose
 private
 
 	def brie(item)
-		if item.sell_in > 0
-			item.quality += 1
-		end
+		item.quality += 1 if item.sell_in > 0
 		quality(item)
 		item.sell_in -= 1
 	end
 
+Inf = 1.0/0.0
+
 	def pass(item)
-		if item.sell_in > 10
+		case item.sell_in
+		when 11..Inf
 			item.quality += 1
-		elsif item.sell_in > 5
+		when 6..10
 			item.quality += 2
-		elsif item.sell_in > 0
+		when 1..5
 			item.quality += 3
 		else
 			item.quality = 0
@@ -45,11 +49,13 @@ private
 	end
 
 	def standard_stock(item)
-		if item.sell_in > 0
-			item.quality -= 1
-		elsif item.sell_in <= 0
-			item.quality -= 2
-		end
+		item.sell_in > 0 ? item.quality -= 1 : item.quality -= 2
+		quality(item)
+		item.sell_in -= 1
+	end
+
+	def conjured(item)
+		item.sell_in > 0 ? item.quality -= 2 : item.quality -= 4
 		quality(item)
 		item.sell_in -= 1
 	end

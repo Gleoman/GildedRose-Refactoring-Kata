@@ -11,7 +11,6 @@ week of the Dec 2017 Makers Academy cohort.
 
 * Ruby 2.4.1
 * Rspec
-* Rubocop
 
 `$ bundle install`
 
@@ -19,7 +18,11 @@ week of the Dec 2017 Makers Academy cohort.
 
 ## Approach Taken
 
-Following Emily Bache's advice on this kata, I have taken the following three stage approach to solving the  problem:
+I have taken the following three stage approach to solving the  problem:
+
+1 - Testing
+2 - Refactor
+3 - New functionality
 
 ---  
 
@@ -76,7 +79,7 @@ quality method and passed into these private methods.
 
 **3**
 
-#### Conjured Items
+#### New Functionality - Conjured Items
 
 I developed the conjured items functionality by writing the following tests:
 

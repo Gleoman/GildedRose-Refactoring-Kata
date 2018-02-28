@@ -72,8 +72,7 @@ The next stage was refactoring the legacy codebase.  I changed the update qualit
 - Standard stock
 - Quality limits
 
-The majority if the substantive logic has now been taken out of the update  
-quality method and passed into these private methods.
+The majority of the substantive logic has now been taken out of the update quality method and passed into these private methods.
 
 ---
 

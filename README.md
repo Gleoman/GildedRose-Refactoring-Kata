@@ -18,11 +18,12 @@ week of the Dec 2017 Makers Academy cohort.
 
 ## Approach Taken
 
-I have taken the following three stage approach to solving the  problem:
+I took the following four stage approach to solving the Gilded Rose kata:
 
 1 - Testing  
-2 - Refactor  
-3 - New functionality
+2 - Refactor legacy codebase
+3 - New functionality - conjured items
+4 - Refactor code out into separate classes
 
 ---  
 
@@ -65,15 +66,15 @@ I then used these tests as a perimeter to guide my refactoring and subsequently 
 
 #### Refactor the legacy codebase
 
-The next stage was refactoring the legacy codebase.  I altered the update quality method so that it now evaluates whether an item falls into the Sulfuras category first.  If it does so, the method leaves that item alone.  If it does not, the method then goes on to evaluate whether the item falls into one of the following three remaining categories:
+The next stage was refactoring the legacy codebase.  I initially altered the update quality method so that it evaluated whether an item fell into the Sulfuras category first.  If it did so, the method left that item alone.  If it did not, the method then evaluated whether the item fell into one of three remaining categories:
 
 - Aged Brie
 - Backstage passes
 - Standard stock
 
-If the item does fall into one of those categories a new QualityEvaluator object (which is injected into the GildedRose class) is then called (with the method relevant to that specific item).  It is the QualityEvaluator object that features the quality logic (so to speak!).
+If the item did fall into one of those categories a new QualityEvaluator object (which was injected into the GildedRose class) was then called (with the method relevant to that specific item).  It was the QualityEvaluator object that then featured the quality logic (so to speak!).
 
-I also have created two new private methods dealing with quality control (i.e. ensuring that quality does not exceed 50 or dip below 0) and sell_in control (i.e. reducing the sell_in value/date).  These are both called on a given item after the QualityEvaluator has provided its response
+Alongside this I created two private methods dealing with quality control (i.e. ensuring that quality does not exceed 50 or dip below 0) and sell_in control (i.e. reducing the sell_in value/date).  These were both called on a given item after the QualityEvaluator had provided its response
 
 ---
 
@@ -81,7 +82,7 @@ I also have created two new private methods dealing with quality control (i.e. e
 
 #### New Functionality - Conjured Items
 
-I developed the conjured items functionality by writing the following tests:
+I then developed the conjured items functionality by writing the following tests:
 
  - while sell_in date extant, it decreases the quality of an item by a reduction of 2
  - reduces the sell_in value of the item by 1
@@ -91,6 +92,20 @@ I developed the conjured items functionality by writing the following tests:
 I then made these tests pass by including an additional statement in the update quality method and an additional method in the QualityEvaluator class.
 
 ---
+
+**4**
+
+#### Refactoring into new classes
+
+Finally, I decided to refactor out the remaining codebase into the following further classes using inheritance principles:
+
+- Brie  
+- Conjured  
+- Pass  
+- StandardStock  
+- Sulfuras
+
+This avoided eliminating or altering the Item class, per the instructions, and allowed me to closely follow the Single Responsibility Principle.  The trade-off in creating new classes for the various types of items was the repetition of the private quality and sell_in control methods across those classes rather than reserving them for the main GildedRose class.  However this seemed a reasonable sacrifice in light of the wider benefits to the codebase.
 
 ## Problem and Requirements
 

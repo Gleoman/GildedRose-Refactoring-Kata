@@ -3,43 +3,100 @@
 This is my response to the Gilded Rose Kata as part of the Tech Test  
 week of the Dec 2017 Makers Academy cohort.
 
+---
+
+## Installation
+
+### System Dependencies
+
+* Ruby 2.4.1
+* Rspec
+* Rubocop
+
+`$ bundle install`
+
+---
+
 ## Approach Taken
 
 Following Emily Bache's advice on this kata, I have taken the following  
-three stage approach to solving the problem:  
+three stage approach to solving the problem:
 
-***1***
+---  
 
-Incorporate Rspec as the testing suite for the codebase and develop automated  
-tests to cover off the existing functionality.
+**1**
 
-At this stage, I have tested four broad areas as follows:
+#### Testing
 
-- when dealing with standard stock
-- when dealing with Aged Brie
-- when dealing with Sulfuras  
-- when dealing with backstage passes
-- when dealing with conjured items
+I incorporated Rspec as the testing suite for the legacy codebase and developed  
+automated tests to cover off the pre-existing functionality, testing for the  
+following four broad areas:
 
-The idea is then to use these tests as a perimeter to guide my refactoring in the second stage.
+- when dealing with **Standard stock**
+ - normal quality reduction
+ - normal sell_in reduction
+ - quality reduction post sell_in expiry
+ - quality cannot be negative
 
-***2***
+- when dealing with **Aged Brie**
+ - increases in quality as sell_in value decreases
+ - cannot increase in quality above 50
 
-Refactor the legacy codebase.
+- when dealing with **Sulfuras**
+ - does not decrease in sell_in value
+ - does not decrease in quality
 
-I have refactored the codebase so that I now have four private methods dealing with respectively:
+- when dealing with **Backstage passes**
+ - increases in quality by 1 when 11+ days of sell_in value left
+ - increases in quality by 2 when 10 days of sell_in value left
+ - increases in quality by 2 when 6 days of sell_in value left
+ - increases in quality by 3 when 5 days of sell_in value left
+ - increases in quality by 3 when 1 day of sell_in value left
+ - cannot increase in quality above 50 when incrementing in units of 1
+ - cannot increase in quality above 50 when incrementing in units of 2
+ - cannot increase in quality above 50 when incrementing in units of 3
+ - decreases in quality to 0 when sell_in value reaches 0
 
-- brie
-- backstage passes
-- standard stock  
-- quality limits
+I then used these tests as a perimeter to guide my refactoring and subsequently  
+the development of new functionality.
 
-Much of the logic has now been taken out of the update quality method and passed into these private methods instead.
+---
 
-***3***
+**2**
 
-Develop the new conjured items feature described in the requirements.
+#### Refactor the legacy codebase
 
+The next stage was refactoring the legacy codebase.  I changed the update quality
+ method so that it now consists of a case statement, which in turn refers  
+ to four private methods dealing with respectively:
+
+- Aged Brie
+- Backstage passes
+- Standard stock
+- Quality limits
+
+The majority if the substantive logic has now been taken out of the update  
+quality method and passed into these private methods.
+
+---
+
+**3**
+
+#### Conjured Items
+
+I developed the conjured items functionality by writing the following tests:
+
+ - while sell_in date extant, it decreases the quality of an item by a reduction
+  of 2
+ - reduces the sell_in value of the item by 1
+ - once sell_in date passed, decreases the quality of an item by a reduction of 4  
+ - cannot allow an item's quality to be negative
+
+I then made these tests pass by including an additional statement in the update  
+quality method that referred to a private conjured items method containing the  
+relevant logic.
+
+---
 
 ## Problem and Requirements
 
@@ -89,29 +146,7 @@ Just for clarification, an item can never have its Quality increase
 above 50, however "Sulfuras" is a legendary item and as such its
 Quality is 80 and it never alters.
 
-
-## Installation
-
-### System Dependencies
-
-* Ruby 2.4.1
-* Rspec
-* Rubocop
-
-`$ bundle install`
-
-## Usage
-
-```
-
-```
-
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+---
 
 ## License
 

@@ -1,12 +1,11 @@
 require 'items'
 
 class GildedRose
-
   def initialize(items)
     @items = items
   end
 
-  def update_quality()
+  def update_quality
     @items.each do |item|
 			case item.name
 			when "Aged Brie"
@@ -23,7 +22,7 @@ class GildedRose
 		end
 	end
 
-private
+	private
 
 	def brie(item)
 		item.quality += 1 if item.sell_in > 0
@@ -31,11 +30,11 @@ private
 		item.sell_in -= 1
 	end
 
-Inf = 1.0/0.0
+INF = 1.0/0.0
 
 	def pass(item)
 		case item.sell_in
-		when 11..Inf
+		when 11..INF
 			item.quality += 1
 		when 6..10
 			item.quality += 2

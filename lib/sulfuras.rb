@@ -5,7 +5,7 @@ class Sulfuras < Item
     super(name, sell_in, quality)
   end
 
-	def update
+  def update
     return self
   end
 end

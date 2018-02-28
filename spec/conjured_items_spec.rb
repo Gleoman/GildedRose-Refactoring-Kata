@@ -10,7 +10,7 @@ describe "when dealing with conjured items" do
     expect(std_items[0].quality).to eq 8
 	end
 
-	it "reduces the sell_in value of the item by 1" do
+  it "reduces the sell_in value of the item by 1" do
     std_items = [Conjured.new("Conjured item", 10, 10)]
     GildedRose.new(std_items).update_quality
     expect(std_items[0].sell_in).to eq 9

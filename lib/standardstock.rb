@@ -5,7 +5,7 @@ class StandardStock < Item
     super(name, sell_in, quality)
   end
 
-	def update
+  def update
     self.sell_in > 0 ? self.quality -= 1 : self.quality -= 2
     quality_control
     sell_in_control

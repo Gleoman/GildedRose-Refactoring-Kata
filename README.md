@@ -19,8 +19,7 @@ week of the Dec 2017 Makers Academy cohort.
 
 ## Approach Taken
 
-Following Emily Bache's advice on this kata, I have taken the following  
-three stage approach to solving the problem:
+Following Emily Bache's advice on this kata, I have taken the following three stage approach to solving the  problem:
 
 ---  
 
@@ -28,9 +27,7 @@ three stage approach to solving the problem:
 
 #### Testing
 
-I incorporated Rspec as the testing suite for the legacy codebase and developed  
-automated tests to cover off the pre-existing functionality, testing for the  
-following four broad areas:
+I incorporated Rspec as the testing suite for the legacy codebase and developed automated tests to cover off  the pre-existing functionality, testing for the following four broad areas:
 
 - when dealing with **Standard stock**
 	- normal quality reduction
@@ -57,8 +54,7 @@ following four broad areas:
 	- cannot increase in quality above 50 when incrementing in units of 3
 	- decreases in quality to 0 when sell_in value reaches 0
 
-I then used these tests as a perimeter to guide my refactoring and subsequently  
-the development of new functionality.
+I then used these tests as a perimeter to guide my refactoring and subsequently the development of new  functionality.
 
 ---
 
@@ -66,9 +62,7 @@ the development of new functionality.
 
 #### Refactor the legacy codebase
 
-The next stage was refactoring the legacy codebase.  I changed the update quality
- method so that it now consists of a case statement, which in turn refers  
- to four private methods dealing with respectively:
+The next stage was refactoring the legacy codebase.  I changed the update quality method so that it now consists of a case statement, which in turn refers to four private methods dealing with respectively:
 
 - Aged Brie
 - Backstage passes
@@ -92,9 +86,7 @@ I developed the conjured items functionality by writing the following tests:
  - once sell_in date passed, decreases the quality of an item by a reduction of 4  
  - cannot allow an item's quality to be negative
 
-I then made these tests pass by including an additional statement in the update  
-quality method that referred to a private conjured items method containing the  
-relevant logic.
+I then made these tests pass by including an additional statement in the update quality method that referred to a private conjured items method containing the relevant logic.
 
 ---
 

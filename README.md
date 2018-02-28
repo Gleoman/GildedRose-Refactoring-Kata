@@ -30,7 +30,7 @@ I have taken the following three stage approach to solving the  problem:
 
 #### Testing
 
-I incorporated Rspec as the testing suite for the legacy codebase and developed automated tests to cover off  the pre-existing functionality, testing for the following four broad areas:
+I used Rspec as the testing suite for the legacy codebase and developed automated tests to cover off the pre-existing functionality, testing for the following four broad areas:
 
 - when dealing with **Standard stock**
 	- normal quality reduction
@@ -57,7 +57,7 @@ I incorporated Rspec as the testing suite for the legacy codebase and developed 
 	- cannot increase in quality above 50 when incrementing in units of 3
 	- decreases in quality to 0 when sell_in value reaches 0
 
-I then used these tests as a perimeter to guide my refactoring and subsequently the development of new  functionality.
+I then used these tests as a perimeter to guide my refactoring and subsequently the development of new functionality.
 
 ---
 
@@ -65,14 +65,15 @@ I then used these tests as a perimeter to guide my refactoring and subsequently 
 
 #### Refactor the legacy codebase
 
-The next stage was refactoring the legacy codebase.  I changed the update quality method so that it now consists of a case statement, which in turn refers to four private methods dealing with respectively:
+The next stage was refactoring the legacy codebase.  I altered the update quality method so that it now evaluates whether an item falls into the Sulfuras category first.  If it does so, the method leaves that item alone.  If it does not, the method then goes on to evaluate whether the item falls into one of the following three remaining categories:
 
 - Aged Brie
 - Backstage passes
 - Standard stock
-- Quality limits
 
-The majority of the substantive logic has now been taken out of the update quality method and passed into these private methods.
+If the item does fall into one of those categories a new QualityEvaluator object (which is injected into the GildedRose class) is then called (with the method relevant to that specific item).  It is the QualityEvaluator object that features the quality logic (so to speak!).
+
+I also have created two new private methods dealing with quality control (i.e. ensuring that quality does not exceed 50 or dip below 0) and sell_in control (i.e. reducing the sell_in value/date).  These are both called on a given item after the QualityEvaluator has provided its response
 
 ---
 
@@ -82,13 +83,12 @@ The majority of the substantive logic has now been taken out of the update quali
 
 I developed the conjured items functionality by writing the following tests:
 
- - while sell_in date extant, it decreases the quality of an item by a reduction
-  of 2
+ - while sell_in date extant, it decreases the quality of an item by a reduction of 2
  - reduces the sell_in value of the item by 1
  - once sell_in date passed, decreases the quality of an item by a reduction of 4  
  - cannot allow an item's quality to be negative
 
-I then made these tests pass by including an additional statement in the update quality method that referred to a private conjured items method containing the relevant logic.
+I then made these tests pass by including an additional statement in the update quality method and an additional method in the QualityEvaluator class.
 
 ---
 

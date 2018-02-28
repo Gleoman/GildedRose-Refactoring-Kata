@@ -27,18 +27,18 @@ class GildedRose
       end
     end
   end
-end
 
-private
+  private
 
-def quality_control(item)
-	if item.quality > 50
-		item.quality = 50
-	elsif item.quality < 1
-		item.quality = 0
-	end
-end
+  def quality_control(item)
+	  if item.quality > 50
+      item.quality = 50
+    elsif item.quality < 1
+      item.quality = 0
+    end
+  end
 
-def sell_in_control(item)
-	item.sell_in -= 1
+  def sell_in_control(item)
+	  item.sell_in -= 1
+  end
 end

@@ -22,8 +22,8 @@ class GildedRose
         else
           @quality_evaluator.standard_stock(item)
         end
-				quality_control(item)
-				sell_in_control(item)
+        quality_control(item)
+        sell_in_control(item)
       end
     end
   end

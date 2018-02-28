@@ -4,7 +4,7 @@ require 'qualityevaluator.rb'
 
 describe "when updating standard stock" do
 
-	quality_evaluator = QualityEvaluator.new
+  quality_evaluator = QualityEvaluator.new
 
   it "reduces the quality of the item by 1" do
     std_items = [Item.new("Standard stock", 10, 10)]

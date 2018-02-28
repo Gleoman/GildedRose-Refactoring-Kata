@@ -20,8 +20,8 @@ week of the Dec 2017 Makers Academy cohort.
 
 I have taken the following three stage approach to solving the  problem:
 
-1 - Testing
-2 - Refactor
+1 - Testing  
+2 - Refactor  
 3 - New functionality
 
 ---  

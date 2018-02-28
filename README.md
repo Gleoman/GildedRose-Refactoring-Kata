@@ -1,7 +1,6 @@
 # **Ed Goold's Gilded Rose Kata** ![CI status](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
-This is my response to the Gilded Rose Kata as part of the Tech Test  
-week of the Dec 2017 Makers Academy cohort.
+This is my response to the Gilded Rose Kata as part of the Tech Test week of the Dec 2017 Makers Academy cohort.
 
 ---
 
@@ -21,8 +20,8 @@ week of the Dec 2017 Makers Academy cohort.
 I took the following four stage approach to solving the Gilded Rose kata:
 
 1 - Testing  
-2 - Refactor legacy codebase
-3 - New functionality - conjured items
+2 - Refactor legacy codebase  
+3 - New functionality - conjured items  
 4 - Refactor code out into separate classes
 
 ---  
@@ -58,7 +57,7 @@ I used Rspec as the testing suite for the legacy codebase and developed automate
 	- cannot increase in quality above 50 when incrementing in units of 3
 	- decreases in quality to 0 when sell_in value reaches 0
 
-I then used these tests as a perimeter to guide my refactoring and subsequently the development of new functionality.
+I then used these tests as a perimeter to guide my refactoring and subsequently the development of the new conjured items functionality.
 
 ---
 
